@@ -3,5 +3,6 @@ namespace CloudBreak.State {
 		None,
 		MailInbox,
 		MailMessage,
+		Terminal,
 	}
 }
