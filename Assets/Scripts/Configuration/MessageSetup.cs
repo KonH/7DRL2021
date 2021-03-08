@@ -10,6 +10,7 @@ namespace CloudBreak.Configuration {
 			Hello,
 			Dataset1,
 			ServerKey,
+			Final,
 		}
 
 		public sealed class Template {

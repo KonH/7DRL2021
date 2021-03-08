@@ -5,22 +5,26 @@ namespace CloudBreak.Service {
 	public sealed class InventoryService {
 		readonly InventoryState _state;
 		readonly MessageService _messageService;
+		readonly UIService      _uiService;
 
-		public InventoryService(InventoryState state, MessageService messageService) {
+		public InventoryService(InventoryState state, MessageService messageService, UIService uiService) {
 			_state          = state;
 			_messageService = messageService;
+			_uiService      = uiService;
 		}
 
 		public void AddFile(ServerFile file) {
 			_state.Files.Add(file);
 			switch ( file ) {
-				case ServerMessage message: {
-					_messageService.AddMessage(message.Template, message.Args);
+				case ServerMessage msg: {
+					var message = _messageService.AddMessage(msg.Template, msg.Args);
+					_uiService.OpenMessage(message);
 					break;
 				}
 
 				case ServerKey key: {
-					_messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, "key value");
+					var message = _messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, "key value");
+					_uiService.OpenMessage(message);
 					break;
 				}
 			}

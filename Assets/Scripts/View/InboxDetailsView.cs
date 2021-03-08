@@ -1,3 +1,4 @@
+using CloudBreak.Configuration;
 using CloudBreak.Service;
 using CloudBreak.State;
 using TMPro;
@@ -27,6 +28,7 @@ namespace CloudBreak.View {
 			if ( activeMessage == null ) {
 				return;
 			}
+			_closeButton.gameObject.SetActive(activeMessage.Template != MessageSetup.TemplateId.Final);
 			_senderText.text = activeMessage.Sender;
 			_headerText.text = activeMessage.Header;
 			_bodyText.text   = activeMessage.Body;

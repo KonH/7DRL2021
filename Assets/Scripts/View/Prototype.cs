@@ -26,12 +26,16 @@ namespace CloudBreak.View {
 
 			var firstServer = new Server("192.168.1.2");
 			firstServer.Files.Add(new ServerKey("192.168.1.3"));
-			firstServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.Dataset1, "Old dataset"));
+			firstServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.Dataset1, "old_dataset"));
 
 			var secondServer = new Server("192.168.1.3");
 
+			var finalServer = new Server("192.168.1.4");
+			finalServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.Final, "final"));
+
 			firstServer.Links.Add(secondServer);
 			secondServer.Links.Add(firstServer);
+			secondServer.Links.Add(finalServer);
 
 			_serverState.CurrentServer.Value = firstServer;
 
