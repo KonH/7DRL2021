@@ -7,8 +7,9 @@ using Zenject;
 
 namespace CloudBreak.View {
 	public sealed class InboxDetailsView : MonoBehaviour {
-		[SerializeField] TMP_Text _header;
-		[SerializeField] TMP_Text _body;
+		[SerializeField] TMP_Text _senderText;
+		[SerializeField] TMP_Text _headerText;
+		[SerializeField] TMP_Text _bodyText;
 		[SerializeField] Button   _closeButton;
 
 		UIState   _state;
@@ -26,8 +27,9 @@ namespace CloudBreak.View {
 			if ( activeMessage == null ) {
 				return;
 			}
-			_header.text = activeMessage.Header;
-			_body.text   = activeMessage.Body;
+			_senderText.text = activeMessage.Sender;
+			_headerText.text = activeMessage.Header;
+			_bodyText.text   = activeMessage.Body;
 		}
 
 		void OnClick() {

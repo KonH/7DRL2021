@@ -15,6 +15,7 @@ namespace CloudBreak.View {
 			}
 		}
 
+		[SerializeField] TMP_Text _senderText;
 		[SerializeField] TMP_Text _headerText;
 		[SerializeField] Graphic  _unreadTarget;
 
@@ -29,6 +30,7 @@ namespace CloudBreak.View {
 
 		void Reinitialize(Message message) {
 			_message         = message;
+			_senderText.text = message.Sender;
 			_headerText.text = message.Header;
 			_message.Read
 				.Subscribe(OnReadChange);

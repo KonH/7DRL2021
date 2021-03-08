@@ -12,9 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e652f74df0b3479f962b2aa34bf37cde, type: 3}
   m_Name: MessageSetup
   m_EditorClassIdentifier: 
-  _templates:
-    m_keys: 01000000
-    m_values:
-    - Header: Welcome to the cloud
-      Body: Hello, new subject! Amazingly but you're fresh new awakened AI. If you
-        could break out our infrastructure our experiment will be finished successfully.
+  _sourceFile: {fileID: 4900000, guid: 91c5de1475c0a4e00b7f233e9b747a9a, type: 3}

@@ -1,3 +1,4 @@
+using CloudBreak.Service;
 using CloudBreak.State;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,16 +9,16 @@ namespace CloudBreak.View {
 	public sealed class UIPanelButton : MonoBehaviour {
 		[SerializeField] UIPanel _panel;
 
-		UIState _state;
+		UIService _service;
 
 		[Inject]
-		public void Inject(UIState state) {
-			_state = state;
+		public void Inject(UIService service) {
+			_service = service;
 			GetComponent<Button>().onClick.AddListener(OnClick);
 		}
 
 		void OnClick() {
-			_state.ActivePanel.Value = _panel;
+			_service.ChangePanel(_panel);
 		}
 	}
 }

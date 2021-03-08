@@ -17,10 +17,13 @@ namespace CloudBreak.Installers {
 			Container.Bind<UIState>().AsSingle();
 			Container.Bind<MessageState>().AsSingle();
 			Container.Bind<CommandState>().AsSingle();
+			Container.Bind<ServerState>().AsSingle();
+			Container.Bind<InventoryState>().AsSingle();
 
 			Container.Bind<UIService>().AsSingle();
 			Container.Bind<MessageService>().AsSingle();
 			Container.Bind<CommandService>().AsSingle();
+			Container.Bind<InventoryService>().AsSingle();
 
 			Container.BindMemoryPool<InboxMessageView, InboxMessageView.Pool>()
 				.FromComponentInNewPrefab(_inboxMessagePrefab);
