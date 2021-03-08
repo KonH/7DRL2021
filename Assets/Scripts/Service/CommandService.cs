@@ -24,18 +24,14 @@ namespace CloudBreak.Service {
 			}
 		}
 
-		public void Execute(Command command) {
+		public void Execute(Command command, bool hidden = false) {
 			switch ( command ) {
-				case PlaceholderCommand _: {
-					_commandState.CurrentChain.Push(command);
-					_commandState.LastCommand.Value = command.Text;
-					SetupAvailableCommands(command.NextCommands);
-					break;
-				}
 				case ExploreCommand _: {
 					_commandState.CurrentChain.Push(command);
-					_commandState.LastCommand.Value = command.Text;
-					var commands = _serverState.CurrentServer.Files
+					if ( !hidden ) {
+						_commandState.LastCommand.Value = command.Text;
+					}
+					var commands = _serverState.CurrentServer.Value.Files
 						.Select(f => (Command)new DownloadCommand(f))
 						.ToList();
 					commands.Add(new BackCommand());
@@ -43,22 +39,48 @@ namespace CloudBreak.Service {
 					break;
 				}
 				case DownloadCommand download: {
+					if ( !hidden ) {
+						_commandState.LastCommand.Value = command.Text;
+					}
 					var file  = download.File;
-					var files = _serverState.CurrentServer.Files;
+					var files = _serverState.CurrentServer.Value.Files;
 					files.Remove(file);
 					var commands = files
 						.Select(f => (Command)new DownloadCommand(f))
-						.ToList();
-					commands.Add(new BackCommand());
+						.Append(new BackCommand());
 					SetupAvailableCommands(commands);
 					_inventoryService.AddFile(file);
 					break;
 				}
+				case ConnectCommand _: {
+					_commandState.CurrentChain.Push(command);
+					if ( !hidden ) {
+						_commandState.LastCommand.Value = command.Text;
+					}
+					var links = _serverState.CurrentServer.Value.Links;
+					var commands = links
+						.Select(s => (Command) new ChangeServerCommand(s))
+						.Append(new BackCommand());
+					SetupAvailableCommands(commands);
+					break;
+				}
+				case ChangeServerCommand changeServer: {
+					_commandState.CurrentChain.Push(command);
+					if ( !hidden ) {
+						_commandState.LastCommand.Value = command.Text;
+					}
+					_serverState.CurrentServer.Value = changeServer.Server;
+					var commands = new Command[] {
+						new ConnectCommand(),
+						new ExploreCommand(),
+					};
+					SetupAvailableCommands(commands);
+					break;
+				}
 				case BackCommand _: {
 					_commandState.CurrentChain.Pop();
-					var prevCommand = _commandState.CurrentChain.Peek();
-					_commandState.LastCommand.Value = prevCommand.Text;
-					SetupAvailableCommands(prevCommand.NextCommands);
+					var prevCommand = _commandState.CurrentChain.Pop();
+					Execute(prevCommand);
 					break;
 				}
 			}

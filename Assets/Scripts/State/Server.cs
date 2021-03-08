@@ -5,6 +5,7 @@ namespace CloudBreak.State {
 		public readonly string Address;
 
 		public List<ServerFile> Files { get; } = new List<ServerFile>();
+		public List<Server>     Links { get; } = new List<Server>();
 
 		public Server(string address) {
 			Address = address;

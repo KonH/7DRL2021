@@ -24,20 +24,19 @@ namespace CloudBreak.View {
 			var message = _messageService.AddMessage(MessageSetup.TemplateId.Hello);
 			_uiService.OpenMessage(message);
 
-			_serverState.CurrentServer = new Server("192.168.1.2");
-			_serverState.CurrentServer.Files.Add(new ServerKey("192.168.1.3"));
-			_serverState.CurrentServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.Dataset1, "Old dataset"));
+			var firstServer = new Server("192.168.1.2");
+			firstServer.Files.Add(new ServerKey("192.168.1.3"));
+			firstServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.Dataset1, "Old dataset"));
 
-			var rootCommand = new PlaceholderCommand(
-				"", "",
-				new PlaceholderCommand(
-					"ssh", "ssh # connect to other server",
-					new BackCommand()),
-				new PlaceholderCommand(
-					"nmap", "nmap # lookup vulnerabilities",
-					new BackCommand()),
-				new ExploreCommand());
-			_commandService.Execute(rootCommand);
+			var secondServer = new Server("192.168.1.3");
+
+			firstServer.Links.Add(secondServer);
+			secondServer.Links.Add(firstServer);
+
+			_serverState.CurrentServer.Value = firstServer;
+
+			var rootCommand = new ChangeServerCommand(firstServer);
+			_commandService.Execute(rootCommand, hidden: true);
 		}
 	}
 }
