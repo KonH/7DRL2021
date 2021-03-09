@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using UniRx;
 
 namespace CloudBreak.State {
 	public sealed class Server {
 		public readonly string Address;
 
-		public List<ServerFile> Files { get; } = new List<ServerFile>();
-		public List<Server>     Links { get; } = new List<Server>();
+		public ReactiveCollection<ServerFile> Files { get; } = new ReactiveCollection<ServerFile>();
+
+		public List<Server> Links { get; } = new List<Server>();
 
 		public Server(string address) {
 			Address = address;

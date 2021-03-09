@@ -1,3 +1,4 @@
+using System.Linq;
 using CloudBreak.Configuration;
 using CloudBreak.State;
 
@@ -23,11 +24,12 @@ namespace CloudBreak.Service {
 				}
 
 				case ServerKey key: {
-					var message = _messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, "key value");
-					_uiService.OpenMessage(message);
+					_messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, "key value");
 					break;
 				}
 			}
 		}
+
+		public bool HasKey(string address) => _state.Files.Any(f => (f as ServerKey)?.Address == address);
 	}
 }
