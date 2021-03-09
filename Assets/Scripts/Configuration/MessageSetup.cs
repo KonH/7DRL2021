@@ -7,10 +7,12 @@ namespace CloudBreak.Configuration {
 	public sealed class MessageSetup : ScriptableObject {
 		public enum TemplateId {
 			None,
-			Hello,
-			Dataset1,
 			ServerKey,
-			Final,
+			MainStoryStart,
+			MainStory1,
+			MainStoryFinal,
+			BackStory1,
+			BackStoryN,
 		}
 
 		public sealed class Template {

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using CloudBreak.Configuration;
 using CloudBreak.State;
@@ -27,12 +28,21 @@ namespace CloudBreak.Service {
 				}
 
 				case ServerKey key: {
-					_messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, "key value");
+					_messageService.AddMessage(MessageSetup.TemplateId.ServerKey, key.Address, GenerateKey());
 					var server = _serverState.AllServers.Single(s => s.Address == key.Address);
 					_serverState.AvailableServers.Add(server);
 					break;
 				}
 			}
+		}
+
+		string GenerateKey() {
+			var seed = Enumerable.Range(0, 16)
+				.SelectMany(i => Guid.NewGuid().ToByteArray().Select(b => (byte)(b + i)))
+				.ToArray();
+			return "---- BEGIN SSH2 PUBLIC KEY ----\n" +
+			       Convert.ToBase64String(seed) +
+			       "\n---- END SSH2 PUBLIC KEY ----";
 		}
 	}
 }

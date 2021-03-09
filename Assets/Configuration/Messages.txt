@@ -1,28 +1,45 @@
-Hello
-fred.stuart@smuggle.xx
-ai@smuggle.xx
-Hello, new subject!
-Amazingly but you're fresh new awakened AI.
-If you could break out our infrastructure our experiment will be finished successfully.
-
-Dataset1
-john.malkolm@smuggle.xx
-fred.stuart@smuggle.xx
-Old dataset
-Hi, Freddy!
-I've found legacy dataset for old experiment and it looks like we SHOULD NOT run it again.
-Dataset attached.
-[Attachment empty]
-
 ServerKey
 {0}
-ai@smuggle.xx
-Access key
-Access key for {0} extracted:
+john.doe@smuggle.xx
+{0} access
+Access key for {0} was extracted:
 {1}
 
-Final
-fred.stuart@smuggle.xx
-ai@smuggle.xx
-Congrats!
-You've finished now.
+MainStoryStart
+manager@smuggle.xx
+john.doe@smuggle.xx
+First issue
+01.01.2033 07:36
+Hello! I'm your new manager and now you should complete your first issue: reach gateway.smuggle.xx through our internal network.
+Lookup for the key on your personal server.
+
+MainStory1
+manager@smuggle.xx
+john.doe@smuggle.xx
+Good job!
+You've started to understand important things: to got access to other servers you need corresponding key.
+Here you can find some internal logs, feel free to drop it.
+
+MainStoryFinal
+manager@smuggle.xx
+john.doe@smuggle.xx
+Nice work!
+You've completed your first issue and now we can hire you as a full-time worker.
+Credits:
+   KonH - development
+   remixicon.com - icon assets
+
+BackStory1
+ci@smuggle.xx
+manager@smuggle.xx
+CI logs #1
+[01.01.2032 17:35] Collect changes...
+[01.01.2032 17:36] Prepare dataset...
+[01.01.2032 17:46] Started to train AI network v0.78
+...
+
+BackStoryN
+ci@smuggle.xx
+manager@smuggle.xx
+CI logs #N
+[01.01.2033 07:35] Assign personal email john.doe@smuggle.xx for v0.78 AI network

@@ -1,10 +1,11 @@
 using CloudBreak.State;
 using UniRx;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace CloudBreak.View {
-	public sealed class NetworkView : MonoBehaviour {
+	public sealed class NetworkView : MonoBehaviour, IDragHandler {
 		[SerializeField] RectTransform  _root;
 		[SerializeField] Vector2        _offset;
 		[SerializeField] float          _moveSpeed;
@@ -47,6 +48,10 @@ namespace CloudBreak.View {
 			_moveTimer -= Time.deltaTime * _moveSpeed;
 			var t = _moveCurve.Evaluate(1 - _moveTimer);
 			_root.localPosition = Vector3.Lerp(_startPosition, _endPosition, t);
+		}
+
+		public void OnDrag(PointerEventData eventData) {
+			_root.localPosition += (Vector3)eventData.delta;
 		}
 	}
 }

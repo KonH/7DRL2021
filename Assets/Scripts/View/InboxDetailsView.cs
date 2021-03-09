@@ -28,7 +28,7 @@ namespace CloudBreak.View {
 			if ( activeMessage == null ) {
 				return;
 			}
-			_closeButton.gameObject.SetActive(activeMessage.Template != MessageSetup.TemplateId.Final);
+			_closeButton.gameObject.SetActive(activeMessage.Template != MessageSetup.TemplateId.MainStoryFinal);
 			_senderText.text = $"{activeMessage.Sender} -> {activeMessage.Receiver}";
 			_headerText.text = activeMessage.Header;
 			_bodyText.text   = activeMessage.Body;

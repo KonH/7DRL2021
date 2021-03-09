@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using CloudBreak.State;
 using TMPro;
 using UnityEngine;
@@ -13,6 +14,8 @@ namespace CloudBreak.View {
 			}
 		}
 
+		[SerializeField] Color    _emptyColor;
+		[SerializeField] Color    _containsColor;
 		[SerializeField] Image    _icon;
 		[SerializeField] TMP_Text _addressText;
 
@@ -29,6 +32,10 @@ namespace CloudBreak.View {
 		void Reinitialize(Server server) {
 			_server = server;
 			SetupName(_state.CurrentServer.Value);
+			SetupIcon(_server.Files);
+			_server
+				.Files.ObserveRemove()
+				.Subscribe(OnFileRemoved);
 		}
 
 		void OnCurrentServerChange(Server server) => SetupName(server);
@@ -37,6 +44,13 @@ namespace CloudBreak.View {
 			var baseName   = _server?.Address;
 			var actualName = (_server == currentServer) ? $"[{baseName}]" : baseName;
 			_addressText.text = actualName;
+		}
+
+		void OnFileRemoved(CollectionRemoveEvent<ServerFile> removeEvent) => SetupIcon(_server.Files);
+
+		void SetupIcon(ICollection<ServerFile> files) {
+			var color = (files.Count > 0) ? _containsColor : _emptyColor;
+			_icon.color = color;
 		}
 	}
 }

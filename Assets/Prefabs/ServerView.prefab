@@ -258,6 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4facc75ca484ea5b35d2450bafccc81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _emptyColor: {r: 0.7686275, g: 0.7686275, b: 0.7686275, a: 1}
+  _containsColor: {r: 1, g: 0.94253516, b: 0.5518868, a: 1}
   _icon: {fileID: 1574681015625223511}
   _addressText: {fileID: 1574681014016718971}
 --- !u!111 &241029108836462208
