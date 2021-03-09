@@ -9,6 +9,11 @@ namespace CloudBreak.View {
 		[SerializeField] TMP_Text _serverText;
 		[SerializeField] TMP_Text _commandText;
 
+		string _currentText;
+		int    _currentChar;
+		float  _printTimer;
+		float  _blinkTimer;
+
 		[Inject]
 		public void Inject(ServerState serverState, CommandState commandState) {
 			serverState.CurrentServer
@@ -22,7 +27,48 @@ namespace CloudBreak.View {
 		}
 
 		void OnLastCommandChange(string value) {
-			_commandText.text = value;
+			_currentText      = value;
+			_commandText.text = string.Empty;
+			_currentChar      = 0;
+			_printTimer       = 0;
+		}
+
+		void Update() {
+			if ( string.IsNullOrEmpty(_currentText) ) {
+				UpdateBlink();
+			} else {
+				UpdatePrint();
+			}
+		}
+
+		void UpdatePrint() {
+			_commandText.enabled = true;
+			_printTimer += Time.deltaTime;
+			if ( _currentChar >= _currentText.Length ) {
+				if ( _printTimer < 0.1f ) {
+					return;
+				}
+				_printTimer       = 0;
+				_currentText      = string.Empty;
+				_commandText.text = string.Empty;
+			} else {
+				if ( _printTimer < 0.025f ) {
+					return;
+				}
+				_printTimer = 0;
+				_commandText.text += _currentText[_currentChar];
+				_currentChar++;
+			}
+		}
+
+		void UpdateBlink() {
+			_blinkTimer += Time.deltaTime;
+			_commandText.text = "_";
+			if ( _blinkTimer < 0.5f ) {
+				return;
+			}
+			_commandText.enabled = !_commandText.enabled;
+			_blinkTimer          = 0;
 		}
 	}
 }

@@ -81,7 +81,7 @@ namespace CloudBreak.Service {
 				case BackCommand _: {
 					_commandState.CurrentChain.Pop();
 					var prevCommand = _commandState.CurrentChain.Pop();
-					Execute(prevCommand);
+					Execute(prevCommand, hidden: true);
 					break;
 				}
 			}

@@ -8,7 +8,7 @@ namespace CloudBreak.View {
 	public sealed class CommandBlock : MonoBehaviour {
 		CommandButton.Pool _pool;
 
-		List<CommandButton> _buttons = new List<CommandButton>();
+		readonly List<CommandButton> _buttons = new List<CommandButton>();
 
 		[Inject]
 		public void Inject(CommandState state, CommandButton.Pool pool) {
