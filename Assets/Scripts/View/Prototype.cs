@@ -27,9 +27,9 @@ namespace CloudBreak.View {
 			var message = _messageService.AddMessage(MessageSetup.TemplateId.Hello);
 			_uiService.OpenMessage(message);
 
-			var firstServer  = new Server("ai.smuggle.xx");
-			var secondServer = new Server("db.smuggle.xx");
-			var finalServer  = new Server("gateway.smuggle.xx");
+			var firstServer  = new Server("ai.smuggle.xx", Vector2.zero);
+			var secondServer = new Server("db.smuggle.xx", new Vector2(0, 100));
+			var finalServer  = new Server("gateway.smuggle.xx", new Vector2(150, 0));
 
 			firstServer.Links.Add(secondServer);
 			firstServer.Files.Add(new ServerKey(secondServer.Address));
@@ -43,6 +43,10 @@ namespace CloudBreak.View {
 
 			_serverState.RootServer          = firstServer;
 			_serverState.CurrentServer.Value = firstServer;
+			_serverState.AllServers.Add(firstServer);
+			_serverState.AllServers.Add(secondServer);
+			_serverState.AllServers.Add(finalServer);
+			_serverState.AvailableServers.Add(firstServer);
 
 			_inventoryState.Files.Add(new ServerKey(firstServer.Address));
 

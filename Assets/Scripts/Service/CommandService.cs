@@ -59,7 +59,7 @@ namespace CloudBreak.Service {
 					}
 					var links = _serverState.CurrentServer.Value.Links;
 					var commands = links
-						.Where(s => _inventoryService.HasKey(s.Address))
+						.Where(s => _serverState.AvailableServers.Contains(s))
 						.Select(s => (Command) new ChangeServerCommand(s))
 						.Append(new BackCommand());
 					SetupAvailableCommands(commands);

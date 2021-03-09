@@ -10,6 +10,7 @@ namespace CloudBreak.Installers {
 		[SerializeField] MessageSetup     _messageSetup;
 		[SerializeField] InboxMessageView _inboxMessagePrefab;
 		[SerializeField] CommandButton    _commandButtonPrefab;
+		[SerializeField] ServerView       _serverViewPrefab;
 
 		public override void InstallBindings() {
 			Container.BindInstance(_messageSetup).AsSingle();
@@ -27,9 +28,10 @@ namespace CloudBreak.Installers {
 
 			Container.BindMemoryPool<InboxMessageView, InboxMessageView.Pool>()
 				.FromComponentInNewPrefab(_inboxMessagePrefab);
-
 			Container.BindMemoryPool<CommandButton, CommandButton.Pool>()
 				.FromComponentInNewPrefab(_commandButtonPrefab);
+			Container.BindMemoryPool<ServerView, ServerView.Pool>()
+				.FromComponentInNewPrefab(_serverViewPrefab);
 		}
 	}
 }
