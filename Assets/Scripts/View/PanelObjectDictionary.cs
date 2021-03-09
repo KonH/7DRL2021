@@ -4,5 +4,5 @@ using UnityEngine;
 
 namespace CloudBreak.View {
 	[Serializable]
-	public sealed class PanelObjectDictionary : SerializableDictionary<UIPanel, GameObject> {}
+	public sealed class PanelObjectDictionary : SerializableDictionary<UIPanel, Panel> {}
 }

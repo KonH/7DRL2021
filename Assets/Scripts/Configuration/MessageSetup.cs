@@ -15,13 +15,15 @@ namespace CloudBreak.Configuration {
 
 		public sealed class Template {
 			public readonly string Sender;
+			public readonly string Receiver;
 			public readonly string Header;
 			public readonly string Body;
 
-			public Template(string sender, string header, string body) {
-				Sender = sender;
-				Header = header;
-				Body   = body;
+			public Template(string sender, string receiver, string header, string body) {
+				Sender   = sender;
+				Receiver = receiver;
+				Header   = header;
+				Body     = body;
 			}
 		}
 
@@ -39,16 +41,18 @@ namespace CloudBreak.Configuration {
 			var lines      = _sourceFile.text.Split('\n');
 			var templateId = TemplateId.None;
 			var sender     = string.Empty;
+			var receiver   = string.Empty;
 			var header     = string.Empty;
 			var body       = new List<string>();
 			void AddTemplate() {
-				_templates.Add(templateId, new Template(sender, header, string.Join("\n", body)));
+				_templates.Add(templateId, new Template(sender, receiver, header, string.Join("\n", body)));
 			}
 			foreach ( var line in lines ) {
 				if ( string.IsNullOrWhiteSpace(line) ) {
 					AddTemplate();
 					templateId = TemplateId.None;
 					sender     = string.Empty;
+					receiver   = string.Empty;
 					header     = string.Empty;
 					body.Clear();
 					continue;
@@ -59,6 +63,10 @@ namespace CloudBreak.Configuration {
 				}
 				if ( string.IsNullOrWhiteSpace(sender) ) {
 					sender = line;
+					continue;
+				}
+				if ( string.IsNullOrWhiteSpace(receiver) ) {
+					receiver = line;
 					continue;
 				}
 				if ( string.IsNullOrWhiteSpace(header) ) {

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using Zenject;
 
 namespace CloudBreak.View {
-	public sealed class InboxDetailsView : MonoBehaviour {
+	public sealed class InboxDetailsView : Panel {
 		[SerializeField] TMP_Text _senderText;
 		[SerializeField] TMP_Text _headerText;
 		[SerializeField] TMP_Text _bodyText;
@@ -29,7 +29,7 @@ namespace CloudBreak.View {
 				return;
 			}
 			_closeButton.gameObject.SetActive(activeMessage.Template != MessageSetup.TemplateId.Final);
-			_senderText.text = activeMessage.Sender;
+			_senderText.text = $"{activeMessage.Sender} -> {activeMessage.Receiver}";
 			_headerText.text = activeMessage.Header;
 			_bodyText.text   = activeMessage.Body;
 		}

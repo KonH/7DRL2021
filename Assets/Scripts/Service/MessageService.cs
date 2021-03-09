@@ -14,9 +14,10 @@ namespace CloudBreak.Service {
 		public Message AddMessage(MessageSetup.TemplateId templateId, params object[] args) {
 			var template = _setup.Templates[templateId];
 			var sender   = string.Format(template.Sender, args);
+			var receiver = string.Format(template.Receiver, args);
 			var header   = string.Format(template.Header, args);
 			var body     = string.Format(template.Body, args);
-			var message  = new Message(templateId, sender, header, body);
+			var message  = new Message(templateId, sender, receiver, header, body);
 			_state.Messages.Insert(0, message);
 			return message;
 		}

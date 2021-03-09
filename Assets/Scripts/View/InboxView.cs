@@ -4,7 +4,7 @@ using UnityEngine;
 using Zenject;
 
 namespace CloudBreak.View {
-	public sealed class InboxView : MonoBehaviour {
+	public sealed class InboxView : Panel {
 		[SerializeField] Transform _root;
 
 		MessageState          _state;
@@ -23,8 +23,10 @@ namespace CloudBreak.View {
 		void OnNewMessage(CollectionAddEvent<Message> addEvent) {
 			var message  = addEvent.Value;
 			var instance = _pool.Spawn(message);
-			instance.transform.SetParent(_root);
-			instance.transform.SetSiblingIndex(addEvent.Index);
+			var trans    = instance.transform;
+			trans.SetParent(_root);
+			trans.SetSiblingIndex(addEvent.Index);
+			trans.localScale = Vector3.one;
 		}
 	}
 }

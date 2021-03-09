@@ -1,11 +1,13 @@
 Hello
-Freddy
+fred.stuart@smuggle.com
+localhost
 Hello, new subject!
 Amazingly but you're fresh new awakened AI.
 If you could break out our infrastructure our experiment will be finished successfully.
 
 Dataset1
-John
+john.malkolm@smuggle.com
+fred.stuart@smuggle.com
 Old dataset
 Hi, Freddy!
 I've found legacy dataset for old experiment and it looks like we SHOULD NOT run it again.
@@ -14,11 +16,13 @@ Dataset attached.
 
 ServerKey
 {0}
+localhost
 Access key
 Access key for {0} extracted:
 {1}
 
 Final
-John
+fred.stuart@smuggle.com
+localhost
 Congrats!
 You've finished now.
