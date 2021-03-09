@@ -12,7 +12,7 @@ namespace CloudBreak.View {
 			_animation = GetComponent<Animation>();
 		}
 
-		void Update() {
+		protected virtual void Update() {
 			if ( !_waitHide ) {
 				return;
 			}

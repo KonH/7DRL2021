@@ -33,7 +33,8 @@ namespace CloudBreak.View {
 			_printTimer       = 0;
 		}
 
-		void Update() {
+		protected override void Update() {
+			base.Update();
 			if ( string.IsNullOrEmpty(_currentText) ) {
 				UpdateBlink();
 			} else {
