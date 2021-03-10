@@ -1,13 +1,7 @@
-# Game Jam Template
+# Cloud Break
 
-## Summary
+Small story-based network travel game made for [7DRL Challenge 2021](https://itch.io/jam/7drl-challenge-2021). Not a classical roguelike but inspired by some ideas of that genre.
 
-There is a blank template for small game production for jam usage. It allows you to do not waste time on infrastructure tasks, keeps focusing on game development.
-
-**Features**:
-- Command-line build
-- Upload to itch.io
-
-You can read more about usage on [wiki section](https://github.com/KonH/GameJamTemplate/wiki).
+You can play it [here](https://konh.itch.io/cloud-break).
 
 
