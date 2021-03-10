@@ -33,6 +33,7 @@ namespace CloudBreak.View {
 			var trans  = view.transform;
 			trans.SetParent(_root);
 			trans.localPosition = server.Position;
+			view.AddLinks();
 		}
 
 		void OnCurrentServerChange(Server server) {
