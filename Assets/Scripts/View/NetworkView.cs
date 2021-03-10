@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using Zenject;
 
 namespace CloudBreak.View {
-	public sealed class NetworkView : MonoBehaviour, IDragHandler {
+	public sealed class NetworkView : MonoBehaviour, IDragHandler, IScrollHandler {
 		[SerializeField] RectTransform  _root;
 		[SerializeField] Vector2        _offset;
 		[SerializeField] float          _moveSpeed;
@@ -38,7 +38,7 @@ namespace CloudBreak.View {
 
 		void OnCurrentServerChange(Server server) {
 			_startPosition = _root.localPosition;
-			_endPosition   = new Vector2(-server?.Position.x ?? 0, -server?.Position.y ?? 0) + _offset;
+			_endPosition   = (new Vector2(-server?.Position.x ?? 0, -server?.Position.y ?? 0) * _root.localScale + _offset);
 			_moveTimer     = 1.0f;
 		}
 
@@ -53,6 +53,16 @@ namespace CloudBreak.View {
 
 		public void OnDrag(PointerEventData eventData) {
 			_root.localPosition += (Vector3)eventData.delta;
+		}
+
+		public void OnScroll(PointerEventData eventData) {
+			var diff     = eventData.scrollDelta.y * 0.33f;
+			var rawScale = (_root.localScale + Vector3.one * diff);
+			_root.localScale = new Vector3(
+				Mathf.Clamp(rawScale.x, 0.25f, 1.75f),
+				Mathf.Clamp(rawScale.y, 0.25f, 1.75f),
+				Mathf.Clamp(rawScale.z, 0.25f, 1.75f)
+			);
 		}
 	}
 }

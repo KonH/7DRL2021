@@ -37,5 +37,12 @@ namespace CloudBreak.View {
 		void OnClick() {
 			_service.CloseMessage();
 		}
+
+		protected override void Update() {
+			base.Update();
+			if ( Input.GetKeyDown(KeyCode.Escape) ) {
+				_service.CloseMessage();
+			}
+		}
 	}
 }

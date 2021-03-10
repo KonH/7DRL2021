@@ -20,17 +20,19 @@ namespace CloudBreak.View {
 			};
 			CreateSimpleRoute(allKeys, firstServer, secondServer);
 
-			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStory1, "note1"));
-			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.BackStory1, "log1"));
+			var filenames = new HashSet<string>();
+
+			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStory1, $"note{GenerateFilename(filenames)}"));
+			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.BackStory1, $"dump{GenerateFilename(filenames)}"));
 
 			finalServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStoryFinal, "congrats"));
 
 			CreateBranchRoutes(
-				grid, allServers, allKeys,
+				grid, allServers, allKeys, filenames,
 				firstServer, finalServer,
-				mainStoryServerCount: 3,
-				backStoryServerCount: 3,
-				maxBranchSize: 2);
+				mainStoryServerCount: 6,
+				backStoryServerCount: 13,
+				maxBranchSize: 4);
 
 			return (firstServer, allServers);
 		}
@@ -52,7 +54,7 @@ namespace CloudBreak.View {
 		}
 
 		static void CreateBranchRoutes(
-			HashSet<Vector2> grid, List<Server> allServers, HashSet<Server> allKeys,
+			HashSet<Vector2> grid, List<Server> allServers, HashSet<Server> allKeys, HashSet<string> filenames,
 			Server firstServer, Server finalServer,
 			int mainStoryServerCount, int backStoryServerCount, int maxBranchSize) {
 			var usedNames             = new HashSet<string>();
@@ -61,17 +63,22 @@ namespace CloudBreak.View {
 			var branches              = new List<List<Server>>();
 			for ( var i = 0; i < mainStoryServerCount; i++ ) {
 				var mainStoryServer = AddServer(GenerateAddress(usedNames), grid, allServers);
+				var mainStoryId     = (MessageSetup.TemplateId) Enum.Parse(typeof(MessageSetup.TemplateId), $"MainStory{2 + i}");
 				mainStoryServer.Files.Add(new ServerMessage(
-					(MessageSetup.TemplateId)Enum.Parse(typeof(MessageSetup.TemplateId), $"MainStory{2 + i}"),
-					$"note{2 + i}"));
+					mainStoryId,
+					$"note{GenerateFilename(filenames)}"));
 				mainStoryServers.Add(mainStoryServer);
 				var curBranchSize = Math.Min(Random.Range(1, maxBranchSize), backStoryServerCount - totalBackStoryServers);
-				var branch        = new List<Server>();
+				if ( i == mainStoryServerCount - 1 ) {
+					curBranchSize = backStoryServerCount - totalBackStoryServers;
+				}
+				var branch = new List<Server>();
 				for ( var j = 0; j < curBranchSize; j++ ) {
 					var backStoryServer = AddServer(GenerateAddress(usedNames), grid, allServers);
+					var backStoryId     = (MessageSetup.TemplateId) Enum.Parse(typeof(MessageSetup.TemplateId), $"BackStory{totalBackStoryServers + 2 + j}");
 					backStoryServer.Files.Add(new ServerMessage(
-						(MessageSetup.TemplateId)Enum.Parse(typeof(MessageSetup.TemplateId), $"BackStory{2 + j}"),
-						$"log{2 + j}"));
+						backStoryId,
+						$"dump{GenerateFilename(filenames)}"));
 					branch.Add(backStoryServer);
 				}
 				branches.Add(branch);
@@ -100,6 +107,20 @@ namespace CloudBreak.View {
 					return name;
 				}
 			}
+		}
+
+		static string GenerateFilename(HashSet<string> usedNames) {
+			while ( true ) {
+				var name = GenerateFilename();
+				if ( usedNames.Add(name) ) {
+					return name;
+				}
+			}
+		}
+
+		static string GenerateFilename() {
+			var num = Random.Range(0, 0xFFFF);
+			return num.ToString("x8");
 		}
 
 		static string GenerateAddress() {

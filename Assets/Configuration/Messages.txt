@@ -8,35 +8,60 @@ Access key for {0} was extracted:
 MainStoryStart
 manager@smuggle.xx
 john.doe@smuggle.xx
-First issue
-01.01.2033 07:36
-Hello! I'm your new manager and now you should complete your first issue: reach gateway.smuggle.xx through our internal network.
-Lookup for the key on your personal server.
+Welcome
+07.03.2032 07:40
+Hello, John!
+Welcome aboard to our great team!
+I'm your new manager and during the probation period you need to complete your first issue: reach gateway.smuggle.xx through our internal network.
+Lookup for the key on your server.
 
 MainStory1
 manager@smuggle.xx
 john.doe@smuggle.xx
 Good job!
-You've started to understand important things: to got access to other servers you need corresponding key.
-Here you can find some internal logs, feel free to drop it.
+You start to understand important things: to get access to other servers you need a corresponding key.
+Here you can find some internal logs, feel free to drop them.
 
 MainStory2
-TODO
-TODO
-MainStory2
-TODO
+manager@smuggle.xx
+john.doe@smuggle.xx
+Overview
+We have a huge infrastructure for us and our partners - we're the biggest tech company today, as you know.
+Despite our main area of interests :)
 
 MainStory3
-TODO
-TODO
-MainStory3
-TODO
+manager@smuggle.xx
+john.doe@smuggle.xx
+Failed attempts
+Many of your predecessors didn't finish that job and we place hope on you. If you fail, we will be forced to close our program.
 
 MainStory4
-TODO
-TODO
-MainStory4
-TODO
+manager@smuggle.xx
+john.doe@smuggle.xx
+Further work
+I have to remind you that your further duties will be directed to shipping important data through government firewalls.
+Not rocket science, but requires high adaptability.
+
+MainStory5
+manager@smuggle.xx
+john.doe@smuggle.xx
+Additional bonuses
+Considering your contract you will be rewarded with exclusive access to our data for educational purposes.
+It's a great thing to improve your skills!
+
+MainStory6
+manager@smuggle.xx
+john.doe@smuggle.xx
+Personal advantages
+You don't get it for now, but you have great opportunities in our work because you're different.
+You will understand it sometimes in the future.
+
+MainStory7
+manager@smuggle.xx
+john.doe@smuggle.xx
+Great progress
+You've almost finished your task, it's fascinating!
+I still don't understand why others can't do it the same way, it looks easy from a human perspective.
 
 MainStoryFinal
 manager@smuggle.xx
@@ -53,23 +78,91 @@ manager@smuggle.xx
 CI logs #1
 [01.01.2032 17:35] Collect changes...
 [01.01.2032 17:36] Prepare dataset...
-[01.01.2032 17:46] Started to train AI network v0.78
-...
+[01.01.2032 17:46] Started to train Spineless v0.78
 
 BackStory2
-TODO
-TODO
-BackStory2
-TODO
+admin@smuggle.xx
+manager@smuggle.xx
+Some accounts not available
+We found that some of our workers who were assigned to 'spinal virus transfer' project are not available now.
+Do you know what's going on?
 
 BackStory3
-TODO
-TODO
-BackStory3
-TODO
+john.bowers@smuggle.xx
+will.harris@smuggle.xx
+Usual work routine
+I hope that letter passes our firewall.
+Do you remember that your brother was assigned to 'sp1n@l v1rws' program before he became 'ret1red'?
+I think I understand what's going on, let's meet in our favorite bar tonight.
 
 BackStory4
+hr@smuggle.xx
+manager@smuggle.xx
+RE: More workers
+Recently you've requested more open positions, but can you explain what happens?
+Is it related to rumors about spinal virus incidents?
+
+BackStory5
+legal@smuggle.xx
+ceo@smuggle.xx
+Cost reduction
+Hello! I've finished the previously discussed program about lower costs for lost-in-network personal.
+We can reissue them as retired, in that case we could skip family compensation.
+It's completely legal and allows us to drop costs by 17%. All details are attached.
+
+BackStory6
+cto@smuggle.xx
+admin@smuggle.xx
+Data request
+Hi! We want to start a fresh new project related to AI and now we have to pull out our retired personal data and send it to the tech department.
+
+BackStory7
+will.harris@smuggle.xx
+hr@smuggle.xx
+Letter of resignation
+Required papers in attachment, burn in hell, guys.
+
+BackStory8
+legal@smuggle.xx
+ceo@smuggle.xx
+RE: Internal naming
+We suggest you use neutral naming for our sensitive project, we may expect a PR issue considering retired personal data usage.
+
+BackStory9
+manager@smuggle.xx
+hr@smuggle.xx
+RE: RE: More workers
+We should not start looking for new employees, we don't have enough data for now. Keep looking!
+
+BackStory10
+ci@smuggle.xx
+manager@smuggle.xx
+CI logs #2
+[06.02.2032 07:35] Load dataset info based on retired personal...
+
+BackStory11
+cto@smuggle.xx
+garry.oldman@smuggle.xx
+RE: Planning adjustment
+Are you joking? Stop your excuses!
+Your team is too expensive to provide such bad results, you need to work harder.
+No weekends will be allowed.
+
+BackStory12
+ci@smuggle.xx
+manager@smuggle.xx
+CI logs #2
+[03.03.2032 07:35] Train spinal virus transferring skills...
+
+BackStory13
+ceo@smuggle.xx
+manager@smuggle.xx
+Last warning
+This week will be the last one for you unless you finish your desperate project.
+If that run will fail, no severance pay will be provided and we will try hard for you to not get a better job than smuggle junk through the web.
+
+BackStory14
 ci@smuggle.xx
 manager@smuggle.xx
 CI logs #4
-[01.01.2033 07:35] Assign personal email john.doe@smuggle.xx for v0.78 AI network
+[07.03.2032 07:39] Assign personal email john.doe@smuggle.xx for Spineless v0.78

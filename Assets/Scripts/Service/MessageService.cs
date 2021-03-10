@@ -1,5 +1,6 @@
 using CloudBreak.Configuration;
 using CloudBreak.State;
+using UnityEngine;
 
 namespace CloudBreak.Service {
 	public sealed class MessageService {
@@ -12,6 +13,7 @@ namespace CloudBreak.Service {
 		}
 
 		public Message AddMessage(MessageSetup.TemplateId templateId, params object[] args) {
+			Debug.Log($"Add message from template: {templateId}");
 			var template = _setup.Templates[templateId];
 			var sender   = string.Format(template.Sender, args);
 			var receiver = string.Format(template.Receiver, args);
