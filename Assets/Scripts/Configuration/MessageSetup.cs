@@ -10,9 +10,14 @@ namespace CloudBreak.Configuration {
 			ServerKey,
 			MainStoryStart,
 			MainStory1,
+			MainStory2,
+			MainStory3,
+			MainStory4,
 			MainStoryFinal,
 			BackStory1,
-			BackStoryN,
+			BackStory2,
+			BackStory3,
+			BackStory4,
 		}
 
 		public sealed class Template {

@@ -20,6 +20,24 @@ Good job!
 You've started to understand important things: to got access to other servers you need corresponding key.
 Here you can find some internal logs, feel free to drop it.
 
+MainStory2
+TODO
+TODO
+MainStory2
+TODO
+
+MainStory3
+TODO
+TODO
+MainStory3
+TODO
+
+MainStory4
+TODO
+TODO
+MainStory4
+TODO
+
 MainStoryFinal
 manager@smuggle.xx
 john.doe@smuggle.xx
@@ -38,8 +56,20 @@ CI logs #1
 [01.01.2032 17:46] Started to train AI network v0.78
 ...
 
-BackStoryN
+BackStory2
+TODO
+TODO
+BackStory2
+TODO
+
+BackStory3
+TODO
+TODO
+BackStory3
+TODO
+
+BackStory4
 ci@smuggle.xx
 manager@smuggle.xx
-CI logs #N
+CI logs #4
 [01.01.2033 07:35] Assign personal email john.doe@smuggle.xx for v0.78 AI network

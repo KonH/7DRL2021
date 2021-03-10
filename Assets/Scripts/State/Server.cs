@@ -15,5 +15,9 @@ namespace CloudBreak.State {
 			Address  = address;
 			Position = position;
 		}
+
+		public override string ToString() {
+			return Address;
+		}
 	}
 }
