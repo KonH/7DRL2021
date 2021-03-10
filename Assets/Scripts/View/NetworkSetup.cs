@@ -20,17 +20,17 @@ namespace CloudBreak.View {
 			};
 			CreateSimpleRoute(allKeys, firstServer, secondServer);
 
+			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStory1, "note1"));
+			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.BackStory1, "log1"));
+
+			finalServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStoryFinal, "congrats"));
+
 			CreateBranchRoutes(
 				grid, allServers, allKeys,
 				firstServer, finalServer,
 				mainStoryServerCount: 3,
 				backStoryServerCount: 3,
 				maxBranchSize: 2);
-
-			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStory1, "note1"));
-			secondServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.BackStory1, "log1"));
-
-			finalServer.Files.Add(new ServerMessage(MessageSetup.TemplateId.MainStoryFinal, "congrats"));
 
 			return (firstServer, allServers);
 		}
@@ -78,10 +78,10 @@ namespace CloudBreak.View {
 				totalBackStoryServers += curBranchSize;
 			}
 			CreateSimpleRoute(allKeys, firstServer, mainStoryServers[0]);
-			CreateSimpleRoute(allKeys, mainStoryServers[mainStoryServers.Count - 1], finalServer);
-			for ( var i = 0; i < branches.Count - 1; i++ ) {
+			for ( var i = 0; i < branches.Count; i++ ) {
+				var targetServer = (i < mainStoryServers.Count - 1) ? mainStoryServers[i + 1] : finalServer;
 				if ( branches[i].Count == 0 ) {
-					CreateSimpleRoute(allKeys, mainStoryServers[i], mainStoryServers[i + 1]);
+					CreateSimpleRoute(allKeys, mainStoryServers[i], targetServer);
 					continue;
 				}
 				var branch = branches[i];
@@ -89,7 +89,7 @@ namespace CloudBreak.View {
 					CreateSimpleRoute(allKeys, mainStoryServers[i], b);
 				}
 				var mainStoryLinkIndex = Random.Range(0, branch.Count);
-				CreateSimpleRoute(allKeys, branch[mainStoryLinkIndex], mainStoryServers[i + 1]);
+				CreateSimpleRoute(allKeys, branch[mainStoryLinkIndex], targetServer);
 			}
 		}
 
@@ -107,14 +107,20 @@ namespace CloudBreak.View {
 				"smuggle",
 				"under",
 				"quack",
-				"lack"
+				"duck",
+				"lazy",
+				"forge",
+				"drone",
+				"owin"
 			};
 			var subdomains = new[] {
 				"",
 				"web",
 				"db",
 				"mail",
-				"qa"
+				"qa",
+				"dev",
+				"st"
 			};
 			var domain    = domains[Random.Range(0, domains.Length)];
 			var subdomain = subdomains[Random.Range(0, subdomains.Length)];
